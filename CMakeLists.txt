@@ -16,8 +16,8 @@ find_package(Qt6 COMPONENTS
         Widgets
         REQUIRED)
 
-include_directories(src)
-include_directories(third_party)
+add_subdirectory(third_party)
+add_subdirectory(src)
 
 
 add_executable(PluginsUi main.cpp)
@@ -25,6 +25,7 @@ target_link_libraries(PluginsUi
         Qt::Core
         Qt::Gui
         Qt::Widgets
+        ui
 )
 
 if (WIN32 AND NOT DEFINED CMAKE_TOOLCHAIN_FILE)
