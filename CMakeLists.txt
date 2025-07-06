@@ -19,19 +19,12 @@ find_package(Qt6 COMPONENTS
 include_directories(src)
 include_directories(third_party)
 
-add_subdirectory(third_party)
-add_subdirectory(src/core)
-add_subdirectory(src/plugins)
-add_subdirectory(src/ui)
 
 add_executable(PluginsUi main.cpp)
 target_link_libraries(PluginsUi
         Qt::Core
         Qt::Gui
         Qt::Widgets
-        plugins
-        core
-        ui
 )
 
 if (WIN32 AND NOT DEFINED CMAKE_TOOLCHAIN_FILE)
