@@ -25,8 +25,9 @@ UiLoader::~UiLoader()
 
 void UiLoader::show()
 {
-    if (m_mainWindow)
-        m_mainWindow->show(); {
+    if (m_mainWindow) {
+        m_mainWindow->resize(800, 600);
+        m_mainWindow->show();
     }
 }
 

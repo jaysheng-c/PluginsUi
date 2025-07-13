@@ -13,13 +13,14 @@ target_include_directories(ui
 set(UI_SOURCES
         ${CMAKE_CURRENT_SOURCE_DIR}/internal/loader.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/internal/main_window.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/internal/main_menu_bar.cpp
 )
 
 target_compile_definitions(ui PRIVATE UI_LIBRARY)
 
 target_sources(ui PRIVATE
         ${UI_SOURCES}
-#        ${QML_SOURCE_FILES}
+#        ${UI_RESOURCE_FILE}
 )
 
 # 链接必要的Qt模块

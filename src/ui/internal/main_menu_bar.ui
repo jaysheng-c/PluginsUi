@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainMenuBar</class>
+ <widget class="QMenuBar" name="MainMenuBar">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>640</width>
+    <height>33</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>0</width>
+    <height>30</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>MenuBar</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">
+/* 菜单栏整体样式 */
+QMenuBar {
+    background-color: #252526;  /* 深灰背景 */
+    color: #d4d4d4;					 /* 浅灰文字 */
+    spacing: 8px;
+    padding: 5px 5px;
+    border-bottom: 1px solid #333333;  /* 底部边框线 */
+}
+/* 菜单项悬停/选中状态 */
+QMenuBar::item {
+    padding: 3px 5px;		/* 增加内边距 */
+	margin: 0 2px;		 	/* 项之间的间距 */
+    border-radius: 3px;
+    background-color: transparent;
+}
+/* 鼠标悬停效果 */
+QMenuBar::item:hover {
+    background-color: #3e3e42;       /* 悬停背景色 */
+    color: #ffffff;                 			 /* 悬停文字颜色 */
+}
+/* 选中/激活状态 */
+QMenuBar::item:selected, 
+QMenuBar::item:pressed {
+    background-color: rgba(122, 122, 122, 180);
+    color: #ffffff;
+}
+/* 禁用状态 */
+QMenuBar::item:disabled {
+    color: #656565;
+}
+/* 下拉箭头样式 */
+QMenuBar::item:menu-indicator {
+    image: none;  /* 隐藏默认箭头 */
+}
+
+
+/* 下拉菜单样式 */
+QMenu {
+    background-color: #2d2d2d;
+    border: 1px solid #454545;
+    color: #d4d4d4;
+    padding: 5px;
+}
+QMenu::item {
+    height: 20px;                 /* 固定高度（可选） */
+    min-height: 20px;             /* 最小高度（推荐） */
+	min-width: 100px;
+	padding: 5px 10px 5px 30px;            /* 上下 5px，左右 20px */
+	margin: 2px 0;                /* 上下间距 2px，左右 0 */
+    background-color: transparent; /* 默认透明 */
+	border-radius: 5px
+}
+QMenu::item:selected {
+    background-color: #2e436e;
+    color: white;
+}
+QMenu::separator {
+    height: 1px;
+    background: #454545;
+    margin: 4px 0;
+}</string>
+  </property>
+  <widget class="QMenu" name="menu_file">
+   <property name="title">
+    <string>文件</string>
+   </property>
+   <addaction name="action_new"/>
+   <addaction name="action_open"/>
+   <addaction name="action_save"/>
+   <addaction name="action_save_as"/>
+   <addaction name="action_print"/>
+   <addaction name="action_exit"/>
+  </widget>
+  <widget class="QMenu" name="menu_edit">
+   <property name="title">
+    <string>编辑</string>
+   </property>
+  </widget>
+  <widget class="QMenu" name="menu_view">
+   <property name="title">
+    <string>视图</string>
+   </property>
+  </widget>
+  <widget class="QMenu" name="menu_tools">
+   <property name="title">
+    <string>工具</string>
+   </property>
+  </widget>
+  <widget class="QMenu" name="menu_help">
+   <property name="title">
+    <string>帮助</string>
+   </property>
+  </widget>
+  <action name="action_new">
+   <property name="text">
+    <string>new</string>
+   </property>
+  </action>
+  <action name="action_open">
+   <property name="text">
+    <string>open</string>
+   </property>
+  </action>
+  <action name="action_print">
+   <property name="text">
+    <string>print</string>
+   </property>
+  </action>
+  <action name="action_exit">
+   <property name="text">
+    <string>exit</string>
+   </property>
+  </action>
+  <action name="action_save">
+   <property name="text">
+    <string>save</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
+   </property>
+  </action>
+  <action name="action_save_as">
+   <property name="text">
+    <string>save as</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Alt+S</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::TextHeuristicRole</enum>
+   </property>
+  </action>
+  <addaction name="menu_file"/>
+  <addaction name="menu_edit"/>
+  <addaction name="menu_view"/>
+  <addaction name="menu_tools"/>
+  <addaction name="menu_help"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
