@@ -19,13 +19,24 @@ QT_BEGIN_NAMESPACE
 namespace Ui { class MainMenuBar; }
 QT_END_NAMESPACE
 
-class MainMenuBar : public QMenuBar {
-Q_OBJECT
 
+class ExtMenu : public QMenu {
+Q_OBJECT
+signals:
+    void extTriggered(const QString &component, int type);
+public:
+    explicit ExtMenu(QWidget *parent = nullptr) : QMenu(parent) {}
+};
+
+class MainMenuBar final : public QMenuBar {
+Q_OBJECT
+signals:
+    void trigger(int type);
+    void extTriggerd(const QString &component, int type);   // 组件名称, 类型
 public:
     explicit MainMenuBar(QWidget *parent = nullptr);
     ~MainMenuBar() override;
-
+    void addExternPlugins(ExtMenu *menu);
 private:
     Ui::MainMenuBar *ui;
 };

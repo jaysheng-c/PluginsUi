@@ -15,12 +15,25 @@
 #include "ui_main_menu_bar.h"
 
 
-MainMenuBar::MainMenuBar(QWidget *parent) :
-    QMenuBar(parent), ui(new Ui::MainMenuBar)
+MainMenuBar::MainMenuBar(QWidget *parent)
+    : QMenuBar(parent), ui(new Ui::MainMenuBar)
 {
     ui->setupUi(this);
 }
 
-MainMenuBar::~MainMenuBar() {
-    delete ui;
+MainMenuBar::~MainMenuBar() { delete ui; }
+
+void MainMenuBar::addExternPlugins(ExtMenu *menu)
+{
+    if (menu == nullptr) {
+        qWarning() << "You can not add nullptr menu in MainMenuBar";
+        return;
+    }
+    auto *pluginsMenu = this->findChild<QMenu*>("action_plugins");
+    if (pluginsMenu == nullptr) {
+        qCritical() << "Can not find plugins menu in MainMenuBar, please check the software integrity";
+        return;
+    }
+    pluginsMenu->addMenu(menu);
+    (void) connect(menu, &ExtMenu::extTriggered, this, &MainMenuBar::extTriggerd);
 }
