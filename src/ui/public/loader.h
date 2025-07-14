@@ -15,13 +15,10 @@
 #include <QObject>
 #include <QPointer>
 
+#include "global.h"
+
 class MainWindow;
 
-#ifdef UI_LIBRARY
-#define UI_EXPORT Q_DECL_EXPORT
-#else
-#define UI_EXPORT Q_DECL_IMPORT
-#endif
 
 class UI_EXPORT UiLoader final : public QObject {
 Q_OBJECT
