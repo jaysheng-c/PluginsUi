@@ -104,6 +104,11 @@ QMenu::separator {
    <property name="title">
     <string>编辑</string>
    </property>
+   <addaction name="action_undo"/>
+   <addaction name="action_redo"/>
+   <addaction name="action_cut"/>
+   <addaction name="action_copy"/>
+   <addaction name="action_paste"/>
   </widget>
   <widget class="QMenu" name="menu_view">
    <property name="title">
@@ -157,6 +162,46 @@ QMenu::separator {
    </property>
    <property name="menuRole">
     <enum>QAction::TextHeuristicRole</enum>
+   </property>
+  </action>
+  <action name="action_undo">
+   <property name="text">
+    <string>undo</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+Z</string>
+   </property>
+  </action>
+  <action name="action_redo">
+   <property name="text">
+    <string>redo</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Z</string>
+   </property>
+  </action>
+  <action name="action_cut">
+   <property name="text">
+    <string>cut</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+X</string>
+   </property>
+  </action>
+  <action name="action_copy">
+   <property name="text">
+    <string>copy</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+C</string>
+   </property>
+  </action>
+  <action name="action_paste">
+   <property name="text">
+    <string>paste</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+V</string>
    </property>
   </action>
   <addaction name="menu_file"/>

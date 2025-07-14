@@ -97,5 +97,5 @@ void MainMenuBar::addExternPlugins(ExtMenu *menu)
         return;
     }
     pluginsMenu->addMenu(menu);
-    (void) connect(menu, &ExtMenu::extTriggered, this, &MainMenuBar::extTriggerd);
+    (void) connect(menu, &ExtMenu::extTriggered, this, &MainMenuBar::extTriggered);
 }

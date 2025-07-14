@@ -32,7 +32,7 @@ class MainMenuBar final : public QMenuBar {
 Q_OBJECT
 signals:
     void trigger(int type);
-    void extTriggerd(const QString &component, int type);   // 组件名称, 类型
+    void extTriggered(const QString &component, int type);   // 组件名称, 类型
 public:
     explicit MainMenuBar(QWidget *parent = nullptr);
     ~MainMenuBar() override;
