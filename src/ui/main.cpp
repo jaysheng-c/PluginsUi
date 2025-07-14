@@ -5,8 +5,7 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    UiLoader loader;
-    loader.show();
+    UiLoader::instance()->show();
 
     return QApplication::exec();
 }

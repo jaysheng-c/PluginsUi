@@ -10,36 +10,36 @@
   */
 
 #include "table_data.h"
-#include <QVariant>
-#include <QDebug>
-#include <QColor>
-#include <QFontComboBox>
 #include <QBuffer>
+#include <QFontComboBox>
+#include <QVariant>
 
 namespace {
+
+#ifdef Q_OS_WIN
+constexpr int DEFAULT_TABLE_FONT_SIZE = 11;
+constexpr char DEFAULT_TABLE_FONT_FAMILY[] = "Microsoft YaHei UI";
+#elif defined(Q_OS_MACOS)
+constexpr int DEFAULT_TABLE_FONT_SIZE = 14;
+constexpr char DEFAULT_TABLE_FONT_FAMILY[] = "Apple Braille";
+#endif
+
 
 constexpr int BOLD = 0;
 constexpr int ITALIC = 1;
 constexpr int UNDERLINE = 2;
 
+QHash<QString, quint16> gFontMap;
+
 
 quint16 fontFamilyIndex(const QString &text)
 {
-    static QFontComboBox gFontComboBox;
-    const int index = gFontComboBox.findText(text);
-    if (index != -1 && index < gFontComboBox.count()) {
-        return index;
-    }
-    return 0;
+    return gFontMap.value(text, 0);
 }
 
 QString fontFamilyString(const int index)
 {
-    static QFontComboBox gFontComboBox;
-    if (index < 0 || index >= gFontComboBox.count()) {
-        return gFontComboBox.itemText(0);
-    }
-    return gFontComboBox.itemText(index);
+    return gFontMap.key(index, DEFAULT_TABLE_FONT_FAMILY);
 }
 
 QVector<bool> fontType(const int type)
@@ -118,9 +118,18 @@ int fromQtAlign(const int align)
 
 }
 
+void TableData::initFontMap()
+{
+    const QFontComboBox fontComboBox;
+    constexpr auto max = std::numeric_limits<quint16>::max();
+    for (quint16 i{0} ; i < fontComboBox.count() && i < max; ++i) {
+        gFontMap.insert(fontComboBox.itemText(i), i);
+    }
+}
+
 TableData::TableData(const QString &value)
-        : m_value(value), m_display(value), m_align(VCenter | Left), m_foreground(4278190080), m_background(0),
-          m_family(0), m_fontType(None), m_fontSize(11)
+    : m_value(value), m_display(value), m_align(VCenter | Left), m_foreground(4278190080), m_background(0),
+    m_family(0), m_fontType(None), m_fontSize(DEFAULT_TABLE_FONT_SIZE)
 {
 
 }

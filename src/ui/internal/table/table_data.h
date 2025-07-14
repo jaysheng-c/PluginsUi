@@ -44,6 +44,8 @@ public:
         Center = HCenter | VCenter,
     };
 
+    static void initFontMap();
+
     explicit TableData(const QString &value = "");
     TableData(const TableData &data);
     TableData(TableData &&data) noexcept;

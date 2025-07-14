@@ -22,12 +22,14 @@ class MainWindow;
 
 class UI_EXPORT UiLoader final : public QObject {
 Q_OBJECT
+Q_DISABLE_COPY_MOVE(UiLoader)
 public:
-    explicit UiLoader(QObject *parent = nullptr);
+    static UiLoader *instance();
     ~UiLoader() override;
 
     void show();
 private:
+    explicit UiLoader(QObject *parent = nullptr);
 
     QPointer<MainWindow> m_mainWindow;
 };

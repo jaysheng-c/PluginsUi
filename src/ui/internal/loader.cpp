@@ -12,10 +12,18 @@
 #include "loader.h"
 
 #include "main_window.h"
+#include "table/table_data.h"
+
+UiLoader *UiLoader::instance()
+{
+    static UiLoader inst;
+    return &inst;
+}
 
 UiLoader::UiLoader(QObject *parent)
     : QObject(parent), m_mainWindow(new MainWindow)
 {
+    TableData::initFontMap();
 }
 
 UiLoader::~UiLoader()
