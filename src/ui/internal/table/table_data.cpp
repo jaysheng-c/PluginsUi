@@ -129,7 +129,7 @@ void TableData::initFontMap()
 
 TableData::TableData(const QString &value)
     : m_value(value), m_display(value), m_align(VCenter | Left), m_foreground(4278190080), m_background(0),
-    m_family(0), m_fontType(None), m_fontSize(DEFAULT_TABLE_FONT_SIZE)
+    m_family(fontFamilyIndex(DEFAULT_TABLE_FONT_FAMILY)), m_fontType(None), m_fontSize(DEFAULT_TABLE_FONT_SIZE)
 {
 
 }
