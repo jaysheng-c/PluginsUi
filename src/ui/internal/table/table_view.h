@@ -1,36 +1,32 @@
 /**
   ********************************************************************************
-  * @file           : main_window.h
+  * @file           : table_view.h
   * @author         : jaysheng
   * @brief          : None
   * @attention      : None
-  * @date           : 2025/07/06
+  * @date           : 2025/07/14
   * @version        : 1.0
   ********************************************************************************
   */
 
-#ifndef MAIN_WINDOW_H
-#define MAIN_WINDOW_H
+#ifndef TABLE_VIEW_H
+#define TABLE_VIEW_H
 
-#include <QMainWindow>
+#include <QTableView>
 
+class TableModel;
 
-QT_BEGIN_NAMESPACE
-namespace Ui { class MainWindow; }
-QT_END_NAMESPACE
-
-class MainWindow : public QMainWindow {
+class TableView final : public QTableView {
 Q_OBJECT
-
 public:
-    explicit MainWindow(QWidget *parent = nullptr);
-    ~MainWindow() override;
-
+    explicit TableView(QWidget *parent = nullptr);
+    void initTable();
 protected:
     void keyPressEvent(QKeyEvent *event) override;
 private:
-    Ui::MainWindow *ui;
+    TableModel *m_model;
 };
 
 
-#endif //MAIN_WINDOW_H
+
+#endif //TABLE_VIEW_H

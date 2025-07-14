@@ -14,6 +14,10 @@ set(UI_SOURCES
         ${CMAKE_CURRENT_SOURCE_DIR}/internal/loader.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/internal/main_window.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/internal/main_menu_bar.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/internal/table/table_view.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/internal/table/table_model.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/internal/table/table_data.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/internal/table/discrete_matrix.cpp
 )
 
 target_compile_definitions(ui PRIVATE UI_LIBRARY)
