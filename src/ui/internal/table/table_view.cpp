@@ -28,7 +28,7 @@ void TableView::initTable()
 
 void TableView::keyPressEvent(QKeyEvent *event)
 {
-    qDebug() << __FUNCTION__ << "CTRL" << event->modifiers();
+    qDebug() << Q_FUNC_INFO << "CTRL" << event->modifiers();
     if (event->modifiers() & Qt::CTRL) {
         // 忽略掉该事件，由父窗口进行处理
         event->ignore();

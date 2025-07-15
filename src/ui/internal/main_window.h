@@ -14,6 +14,7 @@
 
 #include <QMainWindow>
 
+class WidgetContainer;
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -26,10 +27,14 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow() override;
 
+    void setWidgetContainer(WidgetContainer *container);
+
 protected:
     void keyPressEvent(QKeyEvent *event) override;
 private:
     Ui::MainWindow *ui;
+
+    QVector<WidgetContainer*> m_mainContainer;
 };
 
 

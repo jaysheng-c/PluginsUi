@@ -16,16 +16,13 @@
 
 #include <QKeyEvent>
 
-#include "table/table_view.h"
+#include "widget_container.h"
 
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    auto *table = new TableView(this);
-    table->initTable();
-    this->setCentralWidget(table);
 }
 
 MainWindow::~MainWindow()
@@ -33,15 +30,25 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::setWidgetContainer(WidgetContainer *container)
+{
+    if (m_mainContainer.contains(container)) {
+        return;
+    }
+    m_mainContainer.append(container);
+    this->setCentralWidget(container->widget());
+}
+
 void MainWindow::keyPressEvent(QKeyEvent *event)
 {
-    for (auto *child : this->children()) {
-        if (const auto *widget = qobject_cast<QWidget *>(child)) {
+    qDebug() << "";
+    for (auto *container : m_mainContainer) {
+        if (const auto *widget = container->widget()) {
             qDebug() << widget << widget->hasFocus();
         }
     }
     if (event->modifiers() & Qt::CTRL) {
-        qDebug() << __FUNCTION__ << "CTRL" << event->modifiers();
+        qDebug() << Q_FUNC_INFO << "CTRL" << event->modifiers();
         event->accept();
         return;
     }

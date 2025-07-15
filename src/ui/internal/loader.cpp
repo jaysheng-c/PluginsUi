@@ -12,6 +12,7 @@
 #include "loader.h"
 
 #include "main_window.h"
+#include "table/table_container.h"
 #include "table/table_data.h"
 
 UiLoader *UiLoader::instance()
@@ -24,6 +25,7 @@ UiLoader::UiLoader(QObject *parent)
     : QObject(parent), m_mainWindow(new MainWindow)
 {
     TableData::initFontMap();
+    m_mainWindow->setWidgetContainer(new TableContainer(this));
 }
 
 UiLoader::~UiLoader()
