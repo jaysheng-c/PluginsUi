@@ -32,6 +32,9 @@ public:
 protected:
     void keyPressEvent(QKeyEvent *event) override;
 private:
+    bool handleCtrl(WidgetContainer *container, QKeyEvent *event);
+    bool handleCtrlShift(WidgetContainer *container, QKeyEvent *event);
+    bool handleCtrlAlt(WidgetContainer *container, QKeyEvent *event);
     Ui::MainWindow *ui;
 
     QVector<WidgetContainer*> m_mainContainer;

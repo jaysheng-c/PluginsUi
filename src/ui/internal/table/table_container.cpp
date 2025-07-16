@@ -30,6 +30,11 @@ QWidget *TableContainer::widget()
     return m_table;
 }
 
+QString TableContainer::fileName()
+{
+    return {};
+}
+
 void TableContainer::undo()
 {
 }

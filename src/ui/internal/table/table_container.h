@@ -24,8 +24,13 @@ public:
     ~TableContainer() override;
 
     QWidget *widget() override;
+    QString fileName() override;
     void undo() override;
     void redo() override;
+
+    void open(const QString &file) override {}
+    void saveAs(const QString &file) override {}
+    void save() override {}
 
 private:
     QPointer<TableView> m_table;
