@@ -1,5 +1,6 @@
 <RCC>
-    <QResource prefix="/">
-
-    </QResource>
+    <qresource prefix="/">
+        <file>image/ai.png</file>
+        <file>image/ai_selected.png</file>
+    </qresource>
 </RCC>

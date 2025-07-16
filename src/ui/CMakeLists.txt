@@ -26,7 +26,7 @@ target_compile_definitions(ui PRIVATE UI_LIBRARY)
 
 target_sources(ui PRIVATE
         ${UI_SOURCES}
-#        ${UI_RESOURCE_FILE}
+        ${UI_RESOURCE_FILE}
 )
 
 # 链接必要的Qt模块
