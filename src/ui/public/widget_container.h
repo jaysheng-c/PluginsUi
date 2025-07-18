@@ -12,7 +12,8 @@
 #ifndef WIDGET_CONTAINER_H
 #define WIDGET_CONTAINER_H
 
-#include <QWidget>
+#include <QObject>
+class QWidget;
 
 class WidgetContainer : public QObject {
 public:
