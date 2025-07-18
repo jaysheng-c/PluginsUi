@@ -13,7 +13,7 @@
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
-  <widget class="QWidget" name="centralwidget"/>
+  <widget class="QWidget" name="central_widget"/>
   <widget class="MainMenuBar" name="menubar">
    <property name="geometry">
     <rect>
@@ -25,7 +25,7 @@
    </property>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
-  <widget class="QToolBar" name="right_tool_bar">
+  <widget class="MainToolBar" name="right_tool_bar">
    <property name="windowTitle">
     <string>toolBar</string>
    </property>
@@ -51,6 +51,11 @@
    <class>MainMenuBar</class>
    <extends>QMenuBar</extends>
    <header>ui/internal/main_menu_bar.h</header>
+  </customwidget>
+  <customwidget>
+   <class>MainToolBar</class>
+   <extends>QToolBar</extends>
+   <header>ui/internal/toolbar/main_tool_bar.h</header>
   </customwidget>
  </customwidgets>
  <resources/>
