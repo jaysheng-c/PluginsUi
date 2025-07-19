@@ -11,10 +11,10 @@
 
 #include "loader.h"
 
-#include <QDockWidget>
-#include <QToolBar>
-#include <QToolButton>
 
+#include <QToolBar>
+
+#include "main_dock_widget.h"
 #include "main_window.h"
 #include "table/table_container.h"
 #include "table/table_data.h"
@@ -37,7 +37,7 @@ UiLoader::UiLoader(QObject *parent)
         auto *action = toolBar->addAction(QIcon(":/image/ai.png"), "Ai", [=](const bool checked) {
             auto *docker = m_mainWindow->findChild<QDockWidget*>("AiDocker");
             if (!docker) {
-                docker = new QDockWidget("AiDocker", m_mainWindow);
+                docker = new MainDockWidget("AiDocker", m_mainWindow);
                 docker->setObjectName("AiDocker");
                 docker->setAllowedAreas(Qt::RightDockWidgetArea);
                 m_mainWindow->addDockWidget(Qt::RightDockWidgetArea, docker);
@@ -54,6 +54,33 @@ UiLoader::UiLoader(QObject *parent)
         });
         action->setObjectName("Ai");
         action->setCheckable(true);
+    }
+
+    if (auto *toolBar = m_mainWindow->findChild<QToolBar*>("left_tool_bar")) {
+        m_mainWindow->addToolBar(Qt::LeftToolBarArea, toolBar);
+
+        auto *action = toolBar->addAction(QIcon(":/image/file.png"), "File", [=](const bool checked) {
+            auto *docker = m_mainWindow->findChild<QDockWidget*>("FileDocker");
+            if (!docker) {
+                docker = new MainDockWidget("FileDocker", m_mainWindow);
+                docker->setObjectName("FileDocker");
+                docker->setAllowedAreas(Qt::LeftDockWidgetArea);
+                m_mainWindow->addDockWidget(Qt::LeftDockWidgetArea, docker);
+                (void) connect(docker, &QDockWidget::visibilityChanged, [=](const bool visible) {
+                    if (auto *fileAction = toolBar->findChild<QAction*>("File")) {
+                        fileAction->setChecked(visible);
+                    }
+                });
+            }
+            docker->setVisible(checked);
+            if (auto *fileAction = toolBar->findChild<QAction*>("File")) {
+                fileAction->setIcon(checked ? QIcon(":/image/file_selected.png") : QIcon(":/image/file.png"));
+            }
+        });
+        action->setObjectName("File");
+        action->setCheckable(true);
+
+        toolBar->addAction("ai");
     }
 }
 

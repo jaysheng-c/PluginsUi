@@ -19,11 +19,19 @@
 
 #include "widget_container.h"
 
+constexpr char gStyle[] =
+    "QMainWindow::separator { /* addDockWidget后dockWidget与centralWidget之间的handle的设置 */\n"
+    "   width: 1px;\n"
+    "   height: 1px;\n"
+    "   background: transparent;\n"
+    "}";
+
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    this->setStyleSheet(gStyle);
 }
 
 MainWindow::~MainWindow()

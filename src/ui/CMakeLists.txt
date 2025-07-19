@@ -14,6 +14,7 @@ set(UI_SOURCES
         ${CMAKE_CURRENT_SOURCE_DIR}/internal/loader.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/internal/main_window.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/internal/main_menu_bar.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/internal/main_dock_widget.cpp
 
         ${CMAKE_CURRENT_SOURCE_DIR}/internal/toolbar/main_tool_bar.cpp
 

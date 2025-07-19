@@ -2,5 +2,7 @@
     <qresource prefix="/">
         <file>image/ai.png</file>
         <file>image/ai_selected.png</file>
+        <file>image/file.png</file>
+        <file>image/file_selected.png</file>
     </qresource>
 </RCC>
