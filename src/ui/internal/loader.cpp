@@ -13,8 +13,10 @@
 
 
 #include <QToolBar>
+#include <QTimer>
 
 #include "main_dock_widget.h"
+#include "main_tree_view.h"
 #include "main_window.h"
 #include "table/table_container.h"
 #include "table/table_data.h"
@@ -71,6 +73,20 @@ UiLoader::UiLoader(QObject *parent)
                         fileAction->setChecked(visible);
                     }
                 });
+                auto *treeView = new MainTreeView(docker);
+                docker->setWidget(treeView);
+                treeView->initTree();
+                QTimer::singleShot(2 * 1000, [=]() {
+                    for (int i {0}; i < 4; ++i) {
+                        if (const auto &[flag, msg] = treeView->addNode(QString::number(i), i); !flag) {
+                            continue;
+                        }
+                        for (int j {0}; j < 3; ++j) {
+                            treeView->addNode(QString::number(j), i);
+                        }
+                    }
+                });
+
             }
             docker->setVisible(checked);
             if (auto *fileAction = toolBar->findChild<QAction*>("File")) {
