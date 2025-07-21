@@ -76,13 +76,13 @@ UiLoader::UiLoader(QObject *parent)
                 auto *treeView = new MainTreeView(docker);
                 docker->setWidget(treeView);
                 treeView->initTree();
-                QTimer::singleShot(2 * 1000, [=]() {
+                QTimer::singleShot(50, [=]() {
                     for (int i {0}; i < 4; ++i) {
                         if (const auto &[flag, msg] = treeView->addNode(QString::number(i), i); !flag) {
                             continue;
                         }
                         for (int j {0}; j < 3; ++j) {
-                            treeView->addNode(QString::number(j), i);
+                            (void) treeView->addNode(QString::number(j), i);
                         }
                     }
                 });

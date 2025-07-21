@@ -14,6 +14,7 @@
 
 #include <QPointer>
 #include <QTreeView>
+#include "macro.h"
 
 class MainTreeView final : public QTreeView {
 Q_OBJECT
@@ -33,8 +34,8 @@ public:
 
     explicit MainTreeView(QWidget *parent = nullptr);
     void initTree();
-    bool supportedType(int type) const;
-    Result addNode(const QString &name, int type) const;
+    NODISCARD bool supportedType(int type) const;
+    MAYBE_UNUSED Result addNode(const QString &name, int type) const;
 private:
     class Model;
     Model *m_model;

@@ -13,9 +13,28 @@
 #include <QAbstractItemModel>
 #include <QTimer>
 
-#include "macro.h"
 
 namespace {
+
+constexpr char gStyle[] =
+    "QTreeView {\n"
+    "   background-color: #2B2D30;\n"
+    "   border: none;\n"
+    "   color: #FFFFFF;\n"
+    "   outline: 0; /* Remove focus border */\n"
+    "}\n\n"
+    "QTreeView::item {\n"
+    "   height: 15px;\n"
+    "   padding: 2px;\n"
+    "}\n\n"
+    "QTreeView::item:selected:active {\n"
+    "   color: #FFFFFF;\n"
+    "   background-color: #2E436E;\n"
+    "}\n\n"
+    "QTreeView::item::selected:!active {\n"
+    "   color: #FFFFFF;\n"
+    "   background-color: #43454A;\n"
+    "}";
 
 class Node final : public QObject {
 public:
@@ -101,7 +120,7 @@ public:
         }
         return createIndex(row, 0, parent);
     }
-    NODISCARD QModelIndex index(int row, int column, const QModelIndex &parent = QModelIndex()) const override
+    NODISCARD QModelIndex index(const int row, const int column, const QModelIndex &parent) const override
     {
         if (hasIndex(row, column, parent)) {
             const auto *parentNode = nodeFromIndex(parent);
@@ -124,7 +143,7 @@ public:
         Q_UNUSED(parent)
         return 1;
     }
-    NODISCARD QVariant data(const QModelIndex &index, int role) const override
+    NODISCARD QVariant data(const QModelIndex &index, const int role) const override
     {
         if (!index.isValid()) {
             return {};
@@ -136,7 +155,7 @@ public:
         }
         return {};
     }
-    NODISCARD Node *getNode(int type, const QString &name) const
+    NODISCARD Node *getNode(const int type, const QString &name) const
     {
         auto *children = m_root->children();
         const auto it = std::find_if(children->begin(), children->end(), [type](const std::shared_ptr<Node> &child) {
@@ -149,7 +168,7 @@ public:
         m_root->children()->last()->data().parent = m_root.get();
         return m_root->children()->last().get();
     }
-    NODISCARD QVariant headerData(int section, Qt::Orientation orientation, int role) const override
+    NODISCARD QVariant headerData(const int section, const Qt::Orientation orientation, const int role) const override
     {
         if (orientation == Qt::Horizontal || role == Qt::DisplayRole) {
             return "节点名称";
@@ -171,7 +190,7 @@ public:
         }
         return QAbstractItemModel::setData(index, value, role);
     }
-    MAYBE_UNUSED bool insertRows(int position, int count, const QModelIndex &parent) override
+    MAYBE_UNUSED bool insertRows(const int position, const int count, const QModelIndex &parent) override
     {
         auto *parentNode = nodeFromIndex(parent);
         if (parentNode == nullptr) {
@@ -186,7 +205,7 @@ public:
         endInsertRows();
         return true;
     }
-    MAYBE_UNUSED bool removeRows(int position, int count, const QModelIndex &parent) override
+    MAYBE_UNUSED bool removeRows(const int position, const int count, const QModelIndex &parent) override
     {
         auto *parentNode = nodeFromIndex(parent);
         if (parentNode == nullptr) {
@@ -199,7 +218,7 @@ public:
         endRemoveRows();
         return true;
     }
-    MAYBE_UNUSED bool insertColumns(int position, int columns, const QModelIndex &parent) override
+    MAYBE_UNUSED bool insertColumns(const int position, const int columns, const QModelIndex &parent) override
     {
         Q_UNUSED(position)
         Q_UNUSED(columns)
@@ -207,7 +226,7 @@ public:
         qInfo() << "can not support insertColumns";
         return false;
     }
-    MAYBE_UNUSED bool removeColumns(int position, int columns, const QModelIndex &parent) override
+    MAYBE_UNUSED bool removeColumns(const int position, const int columns, const QModelIndex &parent) override
     {
         Q_UNUSED(position)
         Q_UNUSED(columns)
@@ -250,6 +269,7 @@ private:
 MainTreeView::MainTreeView(QWidget *parent)
     : QTreeView(parent), m_model(new Model(this))
 {
+    this->setStyleSheet(gStyle);
 }
 
 void MainTreeView::initTree()
