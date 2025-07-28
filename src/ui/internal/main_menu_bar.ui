@@ -158,7 +158,7 @@ QMenu::separator {
     <string>save as</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+Alt+S</string>
+    <string>Ctrl+Shift+S</string>
    </property>
    <property name="menuRole">
     <enum>QAction::TextHeuristicRole</enum>
