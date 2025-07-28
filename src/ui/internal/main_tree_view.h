@@ -35,7 +35,7 @@ public:
     explicit MainTreeView(QWidget *parent = nullptr);
     void initTree();
     NODISCARD bool supportedType(int type) const;
-    MAYBE_UNUSED Result addNode(const QString &name, int type) const;
+    NODISCARD Result addNode(const QString &name, int type) const;
 private:
     class Model;
     Model *m_model;

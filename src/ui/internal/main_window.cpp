@@ -59,8 +59,6 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
         }
         if (event->modifiers().testFlags(Qt::ControlModifier | Qt::ShiftModifier)) {
             flag |= handleCtrlShift(container, event);
-        } else if (event->modifiers().testFlags(Qt::ControlModifier | Qt::AltModifier)) {
-            flag |= handleCtrlAlt(container, event);
         } else if (event->modifiers().testFlag(Qt::ControlModifier)) {
             flag |= handleCtrl(container, event);
         }
@@ -82,9 +80,8 @@ bool MainWindow::handleCtrl(WidgetContainer *container, QKeyEvent *event)
         case Qt::Key_S:
             if (container->fileName().isEmpty()) {
                 container->save();
-                break;
             }
-            return handleCtrlAlt(container, event);
+            break;
         default: return false;
     }
     event->accept();
@@ -97,15 +94,6 @@ bool MainWindow::handleCtrlShift(WidgetContainer *container, QKeyEvent *event)
         case Qt::Key_Z:
             container->undo();
             break;
-        default: return false;
-    }
-    event->accept();
-    return true;
-}
-
-bool MainWindow::handleCtrlAlt(WidgetContainer *container, QKeyEvent *event)
-{
-    switch (event->key()) {
         case Qt::Key_S:
             container->saveAs(QFileDialog::getSaveFileName(this, tr("Save File"), "",
                                                            tr("Text Files (*.txt);;All Files (*)")));
