@@ -136,7 +136,7 @@ public:
             return 0;
         }
         const auto *parentNode = nodeFromIndex(parent);
-        return parentNode->data().children.size();
+        return static_cast<int>(parentNode->data().children.size());
     }
     NODISCARD int columnCount(const QModelIndex &parent) const override
     {

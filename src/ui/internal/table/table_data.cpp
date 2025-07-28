@@ -228,14 +228,7 @@ bool TableData::setData(const TableData::Type type, QVariant &&data)
 
 void TableData::reset()
 {
-    m_value = "";
-    m_display = "";
-    m_align = TableData::VCenter | TableData::Left;
-    m_foreground = QColor(Qt::black).rgb();
-    m_background = QColor(Qt::transparent).rgba();
-    m_family = fontFamilyIndex("Arial");
-    m_fontType = TableData::None;
-    m_fontSize = 11;
+    *this = TableData();
 }
 
 QByteArray TableData::serializeData(bool compress, int compressionLevel) const
@@ -357,17 +350,8 @@ QDebug operator<<(QDebug debug, const TableData *obj)
 {
     if (obj == nullptr) {
         return debug.nospace() << "0x0";
-    } else {
-        QColor background;
-        background.setRgba(obj->m_background);
-        debug.nospace() << "{\n [Real: " << obj->m_value << "]\n" << " [Display: " << obj->m_display << "]\n"
-                        << " [Align: " << static_cast<Qt::AlignmentFlag>(toQtAlign(obj->m_align)) << "]\n"
-                        << " [Foreground: " << QColor(obj->m_foreground).name() << "]\n"
-                        << " [Background: " << QBrush(background) << "]\n"
-                        << " [Font(family:" << fontFamilyString(obj->m_family)
-                        << ", \"bold, italic, underline\": " << fontType(obj->m_fontType) << ", size:"
-                        << obj->m_fontSize << ")]\n}";
     }
+    debug << *obj;
     return debug.space();
 }
 
@@ -404,12 +388,14 @@ size_t qHash(const TableData &obj)
 
 size_t qHash(const TableData *obj)
 {
-    auto hash = qHash(obj->m_display + "dmsas" + obj->m_value);
-    hash ^= static_cast<quint64>(obj->m_align) * 31;
-    hash ^= static_cast<quint64>(obj->m_foreground) * 37;
-    hash ^= static_cast<quint64>(obj->m_background) * 41;
-    hash ^= static_cast<quint64>(obj->m_family) * 43;
-    hash ^= static_cast<quint64>(obj->m_fontType) * 47;
-    hash ^= static_cast<quint64>(obj->m_fontSize) * 53;
-    return hash;
+    // auto hash = qHash(obj->m_display + "dmsas" + obj->m_value);
+    // hash ^= static_cast<quint64>(obj->m_align) * 31;
+    // hash ^= static_cast<quint64>(obj->m_foreground) * 37;
+    // hash ^= static_cast<quint64>(obj->m_background) * 41;
+    // hash ^= static_cast<quint64>(obj->m_family) * 43;
+    // hash ^= static_cast<quint64>(obj->m_fontType) * 47;
+    // hash ^= static_cast<quint64>(obj->m_fontSize) * 53;
+    constexpr size_t seed = 0;
+    return qHashMulti(seed, obj->m_value, obj->m_display, obj->m_align, obj->m_foreground, obj->m_background,
+        obj->m_family, obj->m_fontType, obj->m_fontSize);
 }
