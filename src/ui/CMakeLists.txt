@@ -17,7 +17,11 @@ set(UI_SOURCES
         ${CMAKE_CURRENT_SOURCE_DIR}/internal/main_dock_widget.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/internal/main_tree_view.cpp
 
+        ${CMAKE_CURRENT_SOURCE_DIR}/internal/init_ui.cpp
+
         ${CMAKE_CURRENT_SOURCE_DIR}/internal/toolbar/main_tool_bar.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/internal/toolbar/init_left_tool_bar.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/internal/toolbar/init_right_tool_bar.cpp
 
         ${CMAKE_CURRENT_SOURCE_DIR}/internal/table/table_container.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/internal/table/table_view.cpp

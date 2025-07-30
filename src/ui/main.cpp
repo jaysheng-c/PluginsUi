@@ -1,5 +1,6 @@
-#include "public/loader.h"
 #include <QApplication>
+
+#include "public/loader.h"
 
 int main(int argc, char *argv[])
 {

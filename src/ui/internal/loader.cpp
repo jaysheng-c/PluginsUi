@@ -21,6 +21,8 @@
 #include "table/table_container.h"
 #include "table/table_data.h"
 
+#include "toolbar/init_left_tool_bar.h"
+
 UiLoader *UiLoader::instance()
 {
     static UiLoader inst;
@@ -58,46 +60,7 @@ UiLoader::UiLoader(QObject *parent)
         action->setCheckable(true);
     }
 
-    if (auto *toolBar = m_mainWindow->findChild<QToolBar*>("left_tool_bar")) {
-        m_mainWindow->addToolBar(Qt::LeftToolBarArea, toolBar);
-
-        auto *action = toolBar->addAction(QIcon(":/image/file.png"), "File", [=](const bool checked) {
-            auto *docker = m_mainWindow->findChild<QDockWidget*>("FileDocker");
-            if (!docker) {
-                docker = new MainDockWidget("FileDocker", m_mainWindow);
-                docker->setObjectName("FileDocker");
-                docker->setAllowedAreas(Qt::LeftDockWidgetArea);
-                m_mainWindow->addDockWidget(Qt::LeftDockWidgetArea, docker);
-                (void) connect(docker, &QDockWidget::visibilityChanged, [=](const bool visible) {
-                    if (auto *fileAction = toolBar->findChild<QAction*>("File")) {
-                        fileAction->setChecked(visible);
-                    }
-                });
-                auto *treeView = new MainTreeView(docker);
-                docker->setWidget(treeView);
-                treeView->initTree();
-                QTimer::singleShot(50, [=]() {
-                    for (int i {0}; i < 4; ++i) {
-                        if (const auto &[flag, msg] = treeView->addNode(QString::number(i), i); !flag) {
-                            continue;
-                        }
-                        for (int j {0}; j < 3; ++j) {
-                            (void) treeView->addNode(QString::number(j), i);
-                        }
-                    }
-                });
-
-            }
-            docker->setVisible(checked);
-            if (auto *fileAction = toolBar->findChild<QAction*>("File")) {
-                fileAction->setIcon(checked ? QIcon(":/image/file_selected.png") : QIcon(":/image/file.png"));
-            }
-        });
-        action->setObjectName("File");
-        action->setCheckable(true);
-
-        toolBar->addAction("ai");
-    }
+    InitLeftToolBar(m_mainWindow).init(m_mainWindow->findChild<QToolBar*>("left_tool_bar"));
 }
 
 UiLoader::~UiLoader()
