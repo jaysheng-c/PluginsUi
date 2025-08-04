@@ -1,6 +1,8 @@
 const GuideState = {
     isExpand: true
 }
+
+// 初始化导航栏
 function initGuide() {
     const sidebar = document.getElementById('sidebar');
     const guideBtn = document.getElementById('guide-btn');
@@ -19,9 +21,132 @@ function initGuide() {
         });
         // 动画结束后移除类
         sidebar.addEventListener('transitionend', function handler() {
-            console.log("1111");
             sidebar.classList.remove('animating');
             // sidebar.removeEventListener('transitionend', handler);
         });
     }
+    initComponent();
+}
+
+function initComponent() {
+    document.getElementById('group-component').addEventListener('click', function(e) {
+        const item = e.target.closest('.text');
+        if (item) {
+            console.log("groupClick", item.innerHTML);
+        }
+    });
+
+    document.getElementById('chat-component').addEventListener('click', function(e) {
+        const item = e.target.closest('.text');
+        if (item) {
+            console.log("chatClick", item.innerHTML);
+        }
+    });
+
+    document.addEventListener('click', () => {
+        document.querySelectorAll('.menu-popup').forEach(popup => {
+            popup.classList.remove('show');
+        });
+    });
+}
+
+//
+function menuClick(event, menu) {
+    const item = menu.parentElement;
+    if (!item) {
+        return;
+    }
+    event.stopPropagation();
+    const menuPopup = item.querySelector('.menu-popup');
+    if (menuPopup) {
+        const isShowing = menuPopup.classList.contains('show');
+        document.querySelectorAll('.menu-popup').forEach(popup => {
+            if (popup !== menuPopup) {
+                popup.classList.remove('show');
+            }
+        });
+        menuPopup.classList.toggle('show', !isShowing);
+    }
+}
+
+// 新增聊天
+let chatItemIdx = 0;
+function addChat() {
+    console.log("addChat");
+    const chat = document.getElementById('chat-component');
+    if (!chat) {
+        return;
+    }
+    const item = document.createElement('div');
+    // item.className = 'chat-component-item active';
+    item.className = 'chat-component-item';
+    item.id = `chat-${Date.now()}`;
+    item.innerHTML = `
+        <div class="text">聊天${chatItemIdx + 1}</div>
+        <div class="chat-component-menu" onclick="menuClick(event, this)">
+            <span class="menu-dots"></span>
+        </div>
+        <div class="menu-popup">
+            <div class="menu-item">
+                <img src="./image/to_top.png" alt="to_top">
+                <span class="menu-item-text">置顶</span>
+            </div>
+            <div class="menu-item">
+                <img src="./image/rename.png" alt="rename">
+                <span class="menu-item-text">重命名</span>
+            </div>
+            <div class="menu-item delete">
+                <img src="./image/del.png" alt="del">
+                <span class="menu-item-text">删除</span>
+            </div>
+        </div>
+    `
+    // 取消其他项的active状态
+    document.querySelectorAll('.chat-component-item').forEach(item => {
+        item.classList.remove('active');
+    });
+    chat.append(item);
+
+    chatItemIdx++;
+}
+
+// 添加组
+let groupItemIdx = 0;
+function addGroup() {
+    console.log("addGroup");
+    const group = document.getElementById('group-component');
+    if (!group) {
+        return;
+    }
+    const item = document.createElement('div');
+    // item.className = 'chat-component-item active';
+    item.className = 'chat-component-item';
+    item.id = `group-${Date.now()}`;
+    item.innerHTML = `
+        <div class="text">分组${groupItemIdx + 1}</div>
+        <div class="chat-component-menu" onclick="menuClick(event, this)">
+            <span class="menu-dots"></span>
+        </div>
+        <div class="menu-popup">
+            <div class="menu-item">
+                <img src="./image/to_top.png" alt="to_top">
+                <span class="menu-item-text">置顶</span>
+            </div>
+            <div class="menu-item">
+                <img src="./image/rename.png" alt="rename">
+                <span class="menu-item-text">重命名</span>
+            </div>
+            <div class="menu-item delete">
+                <img src="./image/del.png" alt="del">
+                <span class="menu-item-text">删除</span>
+            </div>
+        </div>
+    `
+    // 取消其他项的active状态
+    document.querySelectorAll('.chat-component-item').forEach(item => {
+        item.classList.remove('active');
+    });
+    group.append(item);
+
+    groupItemIdx++;
 }

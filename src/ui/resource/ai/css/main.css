@@ -225,18 +225,18 @@ body {
 #sidebar-component .component {
     /*padding: 2px 2px 2px 0;*/
 }
-#sidebar-component .text {
-    display: flex;
-    height: 30px;
-    padding: 0 2px 0 5px;
-    border-radius: 8px;
-    font-size: 14px;
-    color: #666;
-    text-align: left;
-    align-items: center;
-    justify-content: flex-start;
-    cursor: pointer;
-}
-#sidebar-component .text:hover {
-    background: #e0e0e0;
-}
+/*#sidebar-component .text {*/
+/*    display: flex;*/
+/*    height: 30px;*/
+/*    padding: 0 2px 0 5px;*/
+/*    border-radius: 8px;*/
+/*    font-size: 14px;*/
+/*    color: #666;*/
+/*    text-align: left;*/
+/*    align-items: center;*/
+/*    justify-content: flex-start;*/
+/*    cursor: pointer;*/
+/*}*/
+/*#sidebar-component .text:hover {*/
+/*    background: #e0e0e0;*/
+/*}*/

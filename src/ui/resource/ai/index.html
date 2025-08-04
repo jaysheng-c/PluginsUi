@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>AI</title>
     <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/chat-component.css">
     <script src="./js/resize-handle.js"></script>
     <script src="./js/guide.js"></script>
 
@@ -30,27 +31,46 @@
                 </button>
             </div>
             <div id="sidebar-component">
-                <button id="new-chat-btn">
+                <button id="new-chat-btn" onclick="addChat()">
                     <img src="./image/add.png" alt="Add Icon">
                     <span class="divider"></span>
                     <span class="new-chat-btn-text">新建对话</span>
                 </button>
                 <div style="display: flex; justify-content: space-between; align-items: center; padding: 16px 0 5px 0;">
                     <div class="title">分组</div>
-                    <div class="title add" style="align-items: center;">+</div>
+                    <div class="title add" style="align-items: center;" onclick="addGroup()">+</div>
                 </div>
                 <div class="component" id="group-component">
-                    <div class="text">分组1</div>
-                    <div class="text">分组2</div>
+                    <!-- 通过addGroup添加内容 -->
+                    <div class="chat-component-item" id="group0">
+                        <div class="text">分组0</div>
+                        <div class="chat-component-menu" onclick="menuClick(event, this)">
+                            <span class="menu-dots"></span>
+                        </div>
+                        <div class="menu-popup">
+                            <div class="menu-item">
+                                <img src="./image/to_top.png" alt="to_top">
+                                <span class="menu-item-text">置顶</span>
+                            </div>
+                            <div class="menu-item">
+                                <img src="./image/rename.png" alt="rename">
+                                <span class="menu-item-text">重命名</span>
+                            </div>
+                            <div class="menu-item delete">
+                                <img src="./image/del.png" alt="del">
+                                <span class="menu-item-text">删除</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div style="display: flex; justify-content: space-between; align-items: center; padding: 16px 0 5px 0;">
                     <div class="title">聊天</div>
                 </div>
-                <div class="component" id="communicate-component">
-                    <div class="text">聊天1</div>
-                    <div class="text">聊天2</div>
+                <div class="component" id="chat-component">
+                    <!-- 通过addChat添加内容 -->
+<!--                    <div class="text">聊天1</div>-->
+<!--                    <div class="text">聊天2</div>-->
                 </div>
-
             </div>
             <div id="sidebar-user">
                 <button id="user-btn">

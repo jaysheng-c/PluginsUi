@@ -1,0 +1,104 @@
+.chat-component-item {
+    display: flex;
+    height: 38px;
+    cursor: pointer;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 14px;
+
+    border-radius: 8px;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 0 5px 0 5px;
+}
+.chat-component-item:hover {
+    background-color: #e7e7e7;
+}
+.chat-component-item.active {
+    background: #dadada;
+    /*border: 1px solid #709ED1;*/
+}
+
+.chat-component-item .text {
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 14px;
+    color: #666;
+}
+
+.chat-component-item .chat-component-menu {
+    display: none;
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
+    cursor: pointer;
+    color: #666666;
+    align-items: center;
+    justify-content: center;
+}
+.chat-component-item:hover .chat-component-menu {
+    display: flex;
+}
+.chat-component-item .chat-component-menu:hover {
+    background-color: #d1d1d1;
+}
+
+.chat-component-item .menu-dots {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='1'/%3E%3Ccircle cx='12' cy='5' r='1'/%3E%3Ccircle cx='12' cy='19' r='1'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.chat-component-item .menu-popup {
+    position: absolute;
+    right: 10px;
+    top: 30px;
+    background-color: #FFFFFF;
+    border: 1px solid #D6DDE6;
+    border-radius: 2px;
+    box-shadow: 0 0 10px 1px rgba(0,0,0,0.16);
+    z-index: 100;
+    display: none;
+    min-width: 100px;
+}
+.chat-component-item .menu-popup.show {
+    display: block;
+}
+
+.chat-component-item .menu-item {
+    padding: 8px 16px;
+    cursor: pointer;
+    align-items: center;
+    font-size: 14px;
+    font-weight: 400;
+    color: #707070;
+    text-align: left;
+    font-style: normal;
+    text-transform: none;
+}
+.chat-component-item .menu-item:hover {
+    background-color: #f5f5f5;
+    color: #248bf5;
+}
+.chat-component-item .menu-item.delete {
+    color: #e74c3c;
+}
+.chat-component-item .menu-item.delete:hover {
+    background-color: #fdecea;
+}
+.chat-component-item .menu-item img {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+    vertical-align: middle; /* 确保图片垂直居中 */
+}
+.chat-component-item .menu-item-text {
+    vertical-align: middle; /* 确保文本垂直居中 */
+}
