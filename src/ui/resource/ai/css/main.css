@@ -246,7 +246,7 @@ body {
     display: flex;
     flex-direction: column;
     margin: 0 auto;
-    padding: 5px 0;
+    padding: 5px 20px;
     border: 1px solid red;
     flex: 1;
     min-width: 400px;
