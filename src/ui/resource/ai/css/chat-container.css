@@ -1,10 +1,11 @@
 #chat-container {
-    border: 1px solid green;
+    /*border: 1px solid green;*/
     max-width: 100%;
-    display: flex;
-    margin: 0 15px;
     flex: 1;
     flex-direction: column;
+    display: flex;
+    margin: 0 15px;
+    padding: 0 5px;
     gap: 16px;
     overflow-y: auto;
     overflow-x: hidden;
@@ -154,4 +155,26 @@ code::-webkit-scrollbar-corner {
 }
 .message-btn:hover {
     background-color: #f5f5f5;
+}
+
+#chat-container::-webkit-scrollbar {
+    width: 10px;  /* 垂直滚动条宽度 */
+    height: 10px; /* 水平滚动条高度 */
+}
+#chat-container::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    margin: 4px;
+}
+#chat-container::-webkit-scrollbar-thumb {
+    background-color: #8b8b8b;
+    border-radius: 5px;
+    border: 1px solid transparent;
+    background-clip: content-box;
+}
+#chat-container::-webkit-scrollbar-thumb:hover {
+    background-color:#636363;
+}
+#chat-container::-webkit-scrollbar-corner {
+    background: transparent;
 }
