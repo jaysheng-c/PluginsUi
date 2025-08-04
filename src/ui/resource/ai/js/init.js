@@ -1,4 +1,14 @@
 document.addEventListener('DOMContentLoaded', function () {
+    // 初始化 marked 和 highlight.js
+    marked.setOptions({
+        breaks: true,
+        highlight: function(code, lang) {
+            const validLang = hljs.getLanguage(lang) ? lang : 'plaintext';
+            return hljs.highlight(code, { language: validLang }).value;
+        }
+    });
+
+
     initResizeHandle();
     initGuide();
     initInputContainer();
@@ -7,6 +17,13 @@ document.addEventListener('DOMContentLoaded', function () {
         clearMenu();
     });
 });
+
+function escapeHtml(unsafe) {
+    return unsafe
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;");
+}
 
 function clearMenu() {
     document.querySelectorAll('.menu-popup').forEach(popup => {
