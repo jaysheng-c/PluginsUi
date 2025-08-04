@@ -22,7 +22,7 @@ function initGuide() {
                 sidebar.classList.add('collapsed');
                 guideBtnIcon.src = './image/guide-btn-expand.png'
                 if (chatAddBtn) {
-                    console.log(2, chatAddBtn.display);
+                    chatAddBtn.style.display = 'none';
                 }
             }
         });
