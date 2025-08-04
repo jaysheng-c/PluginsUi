@@ -8,15 +8,22 @@ function initGuide() {
     const guideBtn = document.getElementById('guide-btn');
     if (guideBtn) {
         guideBtn.addEventListener('click', function() {
+            const chatAddBtn = document.getElementById('new-chat-btn-header');
             sidebar.classList.add('animating');
             GuideState.isExpand = !GuideState.isExpand;
             const guideBtnIcon = document.querySelector('.guide-btn-icon');
             if (GuideState.isExpand) {
                 sidebar.classList.remove('collapsed');
                 guideBtnIcon.src = './image/guide-btn-shrink.png'
+                if (chatAddBtn) {
+                    chatAddBtn.style.display = 'flex';
+                }
             } else {
                 sidebar.classList.add('collapsed');
                 guideBtnIcon.src = './image/guide-btn-expand.png'
+                if (chatAddBtn) {
+                    console.log(2, chatAddBtn.display);
+                }
             }
         });
         // 动画结束后移除类
