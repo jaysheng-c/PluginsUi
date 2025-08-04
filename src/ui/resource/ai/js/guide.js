@@ -61,12 +61,6 @@ function initComponent() {
             // TODO: checkChat(clickedItem.id)
         }
     });
-
-    document.addEventListener('click', () => {
-        document.querySelectorAll('.menu-popup').forEach(popup => {
-            popup.classList.remove('show');
-        });
-    });
 }
 
 //
@@ -80,11 +74,7 @@ function menuClick(event, menu) {
     const menuPopup = item.querySelector('.menu-popup');
     if (menuPopup) {
         const isShowing = menuPopup.classList.contains('show');
-        document.querySelectorAll('.menu-popup').forEach(popup => {
-            if (popup !== menuPopup) {
-                popup.classList.remove('show');
-            }
-        });
+        clearMenu();
         menuPopup.classList.toggle('show', !isShowing);
     }
 }
