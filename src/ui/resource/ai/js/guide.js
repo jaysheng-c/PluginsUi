@@ -30,16 +30,28 @@ function initGuide() {
 
 function initComponent() {
     document.getElementById('group-component').addEventListener('click', function(e) {
-        const item = e.target.closest('.text');
-        if (item) {
-            console.log("groupClick", item.innerHTML);
+        const clickedItem = e.target.closest('.chat-component-item');
+        if (clickedItem) {
+            document.querySelectorAll('.chat-component-item').forEach(item => {
+                if (clickedItem !== item) {
+                    item.classList.remove('active');
+                }
+            });
+            clickedItem.classList.add('active');
+            // TODO: checkGroup(clickedItem.id)
         }
     });
 
     document.getElementById('chat-component').addEventListener('click', function(e) {
-        const item = e.target.closest('.text');
-        if (item) {
-            console.log("chatClick", item.innerHTML);
+        const clickedItem = e.target.closest('.chat-component-item');
+        if (clickedItem) {
+            document.querySelectorAll('.chat-component-item').forEach(item => {
+                if (clickedItem !== item) {
+                    item.classList.remove('active');
+                }
+            });
+            clickedItem.classList.add('active');
+            // TODO: checkChat(clickedItem.id)
         }
     });
 
@@ -57,6 +69,7 @@ function menuClick(event, menu) {
         return;
     }
     event.stopPropagation();
+    // FIXME: 菜单栏的弹出位置有bug，后续修复
     const menuPopup = item.querySelector('.menu-popup');
     if (menuPopup) {
         const isShowing = menuPopup.classList.contains('show');
@@ -123,7 +136,10 @@ function addGroup() {
     item.className = 'chat-component-item';
     item.id = `group-${Date.now()}`;
     item.innerHTML = `
-        <div class="text">分组${groupItemIdx + 1}</div>
+        <div class="text">
+            <img src="./image/group.png" alt="group">
+            <span>分组${groupItemIdx + 1}</span>
+        </div>
         <div class="chat-component-menu" onclick="menuClick(event, this)">
             <span class="menu-dots"></span>
         </div>

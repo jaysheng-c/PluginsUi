@@ -22,12 +22,20 @@
 }
 
 .chat-component-item .text {
+    display: flex;
     flex: 1;
     white-space: nowrap;
+    align-items: center;
     overflow: hidden;
     text-overflow: ellipsis;
     font-size: 14px;
     color: #666;
+}
+
+.chat-component-item img {
+    width: 16px;
+    height: 16px;
+    padding-right: 5px;
 }
 
 .chat-component-item .chat-component-menu {
