@@ -120,14 +120,14 @@ function createResponseContainer(initialText) {
 
     ctxDiv.appendChild(msgDiv);
     ctxDiv.appendChild(msgBtnContainer);
-    container.appendChild(ctxDiv);
+    msgContainer.appendChild(ctxDiv)
+    container.appendChild(msgContainer);
 
     ChatMessageState.lastResponseContainer = msgContainer;
-    ChatMessageState.waitingMsg = true;
 }
 
 function processResponse(text) {
-    if (!ChatMessageState.lastResponseContainer || !ChatMessageState.waitingMsg || !ChatMessageState.receivingMsg) {
+    if (!ChatMessageState.lastResponseContainer || (!ChatMessageState.waitingMsg && !ChatMessageState.receivingMsg)) {
         console.warn('processResponse failed');
         return;
     }
@@ -137,7 +137,7 @@ function processResponse(text) {
     const msgContainer = ChatMessageState.lastResponseContainer;
     const ctxDiv = msgContainer.querySelector('.message');
     if (!ctxDiv) {
-        console.warn('processResponse can not find message');
+        console.warn('processResponse can not find message', ctxDiv);
         return;
     }
     const html = marked.parse(text);
@@ -183,11 +183,11 @@ function createCodeContainer(lang, code) {
                 <span class="code-language">${lang}</span>
                 <div>
                     <button class="code-btn" onclick="copyCode(this)">
-                        <img src="qrc:/AiRobot/ai_robot/image/copy.png" alt="代码复制">
+                        <img src="./image/copy.png" alt="代码复制">
                     </button>          
                     <span style="border-left: 1px solid #707070;height: 100%; margin-left: 2px; margin-right: 5px;"></span>
                     <button class="code-btn" onclick="copyCode(this)">
-                        <img src="qrc:/AiRobot/ai_robot/image/expand_code.png" alt="代码展开">
+                        <img src="./image/expand_code.png" alt="代码展开">
                     </button>      
                 </div>
             </div>
@@ -279,8 +279,10 @@ function sendMsg() {
             window.alert('信息发送失败！');
             return;
         }
+        ChatMessageState.waitingMsg = true;
         createResponseContainer('1111111');
         // TODO: 发送消息到后台，并且启动接收
+        processResponse(Response);
 
         userInput.value = '';
         setSendState(true);

@@ -110,3 +110,51 @@
 .chat-component-item .menu-item-text {
     vertical-align: middle; /* 确保文本垂直居中 */
 }
+
+/* 表格响应式容器 */
+.table-responsive {
+    width: 100%;
+    overflow-x: auto;
+    margin: 1rem 0;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+/* 基础表格样式 */
+.markdown-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9em;
+    min-width: 400px;
+}
+/* 表头样式 */
+.markdown-table th {
+    background-color: #f8f9fa;
+    text-align: left;
+    font-weight: 600;
+    padding: 12px 15px;
+    position: sticky;
+    top: 0;
+}
+/* 单元格样式 */
+.markdown-table td {
+    padding: 12px 15px;
+    border-top: 1px solid #e9ecef;
+    vertical-align: top;
+}
+/* 斑马条纹 */
+.markdown-table tr.striped-row {
+    background-color: #f8f9fa;
+}
+/* 悬停效果 */
+.markdown-table tr.hover-row {
+    background-color: #f1f3f5;
+}
+/* 边框效果 */
+.markdown-table th,
+.markdown-table td {
+    border-right: 1px solid #e9ecef;
+}
+.markdown-table th:last-child,
+.markdown-table td:last-child {
+    border-right: none;
+}
