@@ -183,11 +183,11 @@ function createCodeContainer(lang, code) {
                 <span class="code-language">${lang}</span>
                 <div>
                     <button class="code-btn" onclick="copyCode(this)">
-                        <img src="./image/copy.png" alt="代码复制">
+                        <img src="${PngPrefix + PngFiles.codeCopyPng}" alt="copy.png">
                     </button>          
                     <span style="border-left: 1px solid #707070;height: 100%; margin-left: 2px; margin-right: 5px;"></span>
                     <button class="code-btn" onclick="copyCode(this)">
-                        <img src="./image/expand_code.png" alt="代码展开">
+                        <img src="${PngPrefix + PngFiles.codeExpandPng}" alt="expand_code.png">
                     </button>      
                 </div>
             </div>
@@ -291,7 +291,8 @@ function sendMsg() {
 
 function stopMsg() {
     setSendState(false);
-
+    ChatMessageState.waitingMsg = false;
+    ChatMessageState.receivingMsg = false;
     // TODO: 暂替消息接受
 }
 

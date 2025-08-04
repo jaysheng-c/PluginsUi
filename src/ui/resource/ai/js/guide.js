@@ -14,13 +14,15 @@ function initGuide() {
             const guideBtnIcon = document.querySelector('.guide-btn-icon');
             if (GuideState.isExpand) {
                 sidebar.classList.remove('collapsed');
-                guideBtnIcon.src = './image/guide-btn-shrink.png'
+                guideBtnIcon.src = PngPrefix + PngFiles.guideShrinkPng;
+                guideBtnIcon.alt = PngFiles.guideShrinkPng;
                 if (chatAddBtn) {
                     chatAddBtn.style.display = 'flex';
                 }
             } else {
                 sidebar.classList.add('collapsed');
-                guideBtnIcon.src = './image/guide-btn-expand.png'
+                guideBtnIcon.src = PngPrefix + PngFiles.guideExpandPng;
+                guideBtnIcon.alt = PngFiles.guideExpandPng;
                 if (chatAddBtn) {
                     chatAddBtn.style.display = 'none';
                 }
@@ -98,15 +100,15 @@ function addChat() {
         </div>
         <div class="menu-popup">
             <div class="menu-item">
-                <img src="./image/to_top.png" alt="to_top">
+                <img src="${PngPrefix + PngFiles.toTopPng}" alt='${PngFiles.toTopPng}'>
                 <span class="menu-item-text">置顶</span>
             </div>
             <div class="menu-item">
-                <img src="./image/rename.png" alt="rename">
+                <img src="${PngPrefix + PngFiles.renamePng}" alt='${PngFiles.renamePng}'>
                 <span class="menu-item-text">重命名</span>
             </div>
             <div class="menu-item delete">
-                <img src="./image/del.png" alt="del">
+                <img src="${PngPrefix + PngFiles.deletePng}" alt='${PngFiles.deletePng}'>
                 <span class="menu-item-text">删除</span>
             </div>
         </div>
@@ -134,7 +136,7 @@ function addGroup() {
     item.id = `group-${Date.now()}`;
     item.innerHTML = `
         <div class="text">
-            <img src="./image/group.png" alt="group">
+            <img src="${PngPrefix + PngFiles.groupPng}" alt="${PngFiles.groupPng}">
             <span>分组${groupItemIdx + 1}</span>
         </div>
         <div class="chat-component-menu" onclick="menuClick(event, this)">
@@ -142,15 +144,15 @@ function addGroup() {
         </div>
         <div class="menu-popup">
             <div class="menu-item">
-                <img src="./image/to_top.png" alt="to_top">
+                <img src="${PngPrefix + PngFiles.toTopPng}" alt="${PngFiles.toTopPng}">
                 <span class="menu-item-text">置顶</span>
             </div>
             <div class="menu-item">
-                <img src="./image/rename.png" alt="rename">
+                <img src="${PngPrefix + PngFiles.renamePng}" alt="${PngFiles.renamePng}">
                 <span class="menu-item-text">重命名</span>
             </div>
             <div class="menu-item delete">
-                <img src="./image/del.png" alt="del">
+                <img src="${PngPrefix + PngFiles.deletePng}" alt="${PngFiles.deletePng}">
                 <span class="menu-item-text">删除</span>
             </div>
         </div>

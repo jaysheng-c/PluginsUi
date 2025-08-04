@@ -17,6 +17,20 @@ const UploadFileState = {
     uploadingFiles: new Map(),  // 上传中的文件
 }
 
+const PngPrefix = './image/';
+const PngFiles = {
+    codeCopyPng: 'copy.png',
+    codeExpandPng: 'expand_code.png',
+
+    guideExpandPng: 'guide-btn-expand.png',
+    guideShrinkPng: 'guide-btn-shrink',
+
+    groupPng: 'group.png',
+    toTopPng: 'to_top.png',
+    renamePng: 'rename.png',
+    deletePng: 'del.png',
+}
+
 const TimerState = {
     timer: null,
     running: false,
@@ -27,6 +41,7 @@ const Response=
     "```cpp\n" +
     "// MarkdownHighlighter.h\n" +
     "#pragma once\n" +
+    "#define DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD d\n" +
     "#include <QSyntaxHighlighter>\n" +
     "#include <QTextDocument>\n" +
     "#include <QRegularExpression>\n\n" +

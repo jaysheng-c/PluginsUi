@@ -7,11 +7,13 @@ document.addEventListener('DOMContentLoaded', function () {
             return hljs.highlight(code, { language: validLang }).value;
         }
     });
-
-
     initResizeHandle();
     initGuide();
     initInputContainer();
+
+    document.querySelectorAll('.img').forEach(img => {
+        img.src = PngPrefix + img.alt;
+    });
 
     document.addEventListener('click', () => {
         clearMenu();
