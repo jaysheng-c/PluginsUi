@@ -23,7 +23,7 @@ const PngFiles = {
     codeExpandPng: 'expand_code.png',
 
     guideExpandPng: 'guide-btn-expand.png',
-    guideShrinkPng: 'guide-btn-shrink',
+    guideShrinkPng: 'guide-btn-shrink.png',
 
     groupPng: 'group.png',
     toTopPng: 'to_top.png',
