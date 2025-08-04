@@ -18,6 +18,13 @@ function initInputContainer() {
     setSendState(false);
 }
 
+// 滚动条到最底部
+function scrollToBottom(element) {
+    requestAnimationFrame(() => {
+        element.scrollTop = element.scrollHeight;
+    });
+}
+
 function setSendState(sending) {
     const sendBtn = document.getElementById('send-btn');
     const stopBtn = document.getElementById('stop-btn');
@@ -40,12 +47,52 @@ function adjustInputHeight() {
 }
 
 function checkState() {
-    return false;
+    if (ChatMessageState.waitingMsg || ChatMessageState.receivingMsg) {
+        window.alert('请先停止对话！');
+        return false;
+    }
+    if (UploadFileState.uploadingFiles.size > 0) {
+        window.alert('请等待文件上传完成！');
+        return false;
+    }
+    return true;
 }
 
 // 处理用户信息
 function processUserMessage(text) {
+    if (!text || text === '') {
+        return false;
+    }
+    const container = document.getElementById('chat-container');
+    const msgContainer = document.createElement('div');
+    msgContainer.className = 'message-container user';
+    msgContainer.id = UserContainerIdPrefix + ChatMessageState.lastMsgId;
 
+    const ctxtDiv = document.createElement('div');
+    ctxtDiv.className = 'message-content';
+
+    // 是否存在文件上传
+    if (UploadFileState.uploadedFiles.length > 0) {
+        // 存在上传的文件，添加文件预览
+        const fileContainer = document.getElementById('file-upload-container');
+        if (fileContainer) {
+            const  previewContainer = document.createElement('div');
+            previewContainer.className = 'files-preview-container';
+            previewContainer.innerHTML = fileContainer.innerHTML;
+            ctxtDiv.appendChild(previewContainer);
+        }
+    }
+    // 消息
+    const msgDiv = document.createElement('div');
+    msgDiv.className = 'message user-message';
+    msgDiv.textContent = text;
+    ctxtDiv.appendChild(msgDiv);
+
+    msgContainer.appendChild(ctxtDiv);
+    container.appendChild(msgContainer);
+
+    scrollToBottom(container);
+    return true;
 }
 
 function fileUploadBtn(event) {
@@ -66,15 +113,20 @@ function fileUploadBtn(event) {
 function sendMsg() {
     const userInput = document.getElementById('user-input');
     const message = userInput.value.trim();
-    // if (!checkedState()) {
-    //     return;
-    // }
+    if (!checkState()) {
+        return;
+    }
     if (message) {
-        console.log(message);
+        console.log("sendMsg", message);
 
         setWelcomeState(false);
-        processUserMessage(message);
-
+        const oldId = ChatMessageState.lastMsgId;
+        ChatMessageState.lastMsgId = Date.now();
+        if (!processUserMessage(message)) {
+            ChatMessageState.lastMsgId = oldId;
+            window.alert('信息发送失败！');
+            return;
+        }
         // TODO: 发送消息到后台，并且启动接收
 
         userInput.value = '';
