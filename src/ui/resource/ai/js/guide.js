@@ -130,6 +130,7 @@ function addGroup() {
     if (!group) {
         return;
     }
+    const name = '分组' + (groupItemIdx + 1);
     const item = document.createElement('div');
     // item.className = 'chat-component-item active';
     item.className = 'chat-component-item';
@@ -137,7 +138,7 @@ function addGroup() {
     item.innerHTML = `
         <div class="text">
             <img src="${PngPrefix + PngFiles.groupPng}" alt="${PngFiles.groupPng}">
-            <span>分组${groupItemIdx + 1}</span>
+            <span>${name}</span>
         </div>
         <div class="chat-component-menu" onclick="menuClick(event, this)">
             <span class="menu-dots"></span>

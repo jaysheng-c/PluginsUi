@@ -5,7 +5,7 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    font-size: 14px;
+    /*font-size: 14px;*/
 
     border-radius: 8px;
     justify-content: space-between;
@@ -28,7 +28,7 @@
     align-items: center;
     overflow: hidden;
     text-overflow: ellipsis;
-    font-size: 14px;
+    /*font-size: 14px;*/
     color: #666;
 }
 
@@ -84,7 +84,7 @@
     padding: 8px 16px;
     cursor: pointer;
     align-items: center;
-    font-size: 14px;
+    /*font-size: 14px;*/
     font-weight: 400;
     color: #707070;
     text-align: left;
@@ -123,7 +123,7 @@
 .markdown-table {
     width: 100%;
     border-collapse: collapse;
-    font-size: 0.9em;
+    /*font-size: 0.9em;*/
     min-width: 400px;
 }
 /* 表头样式 */
